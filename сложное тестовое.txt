@@ -1,0 +1,47 @@
+UPDATE Last_ex
+SET Phone =
+
+REPLACE(
+	(REPLACE(
+		(REPLACE(
+			(REPLACE(
+				(REPLACE(
+					(REPLACE(
+						(REPLACE(
+							(REPLACE(
+								(REPLACE(
+									(REPLACE(
+										(REPLACE(Phone,  ' ',''))
+									,'| ',', '))
+								, '*',''))
+							, '/',''))
+						, '-',''))
+					, '+',''))
+				, ',',', '))
+			, ';','; '))
+		, '_',''))
+	, '(','')) 
+	, ')','')
+
+
+SELECT ProdId, ProdName,   left(case
+when substring(value, 1, 1) = '7'
+then '8' + substring(value, 2, 100)
+when substring(value, 1, 1) = '9'
+then '8' + substring(value, 1, 100)
+when substring(value, 1, 1) = '7'
+then '8' + substring(value, 2, 100)
+
+when len(value) = 7
+then '8861' + substring(value, 1, 100)
+
+
+when len(value) = 6
+then '88612' + value
+
+else value
+end, 11) as Phone
+from Last_ex
+    CROSS APPLY STRING_SPLIT(REPLACE((REPLACE((REPLACE(Phone, '|', '')), ';', '')), ',', ''), ' ');
+
+

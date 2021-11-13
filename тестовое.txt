@@ -1,0 +1,55 @@
+№1
+SELECT MONTH(ExcellentDate) AS ExcellentMonth
+FROM Excellent
+WHERE MONTH(ExcellentDate) > 1
+GROUP BY ExcellentDate
+ORDER BY ExcellentMonth DESC
+
+№2
+UPDATE Exchange
+SET Not_value = 
+ (
+ CASE Not_value
+ WHEN '2' THEN '1'                                   
+ WHEN '0' THEN '2'
+ ELSE Not_value
+ END);
+
+№3
+SELECT * FROM NOT_INSERT WHERE (Id % 2) = 0  OR (Id > 0) AND (Id % 3)= 0;
+
+№4
+SELECT IDENT_CURRENT( 'Customers' );
+SELECT MAX(Id) FROM Customers;
+(выведутся последние значения идентификатора созданные в любой таблице во время текущего сеанса) 
+SELECT SCOPE_IDENTITY() AS [SCOPE_IDENTITY];  
+GO  
+SELECT @@IDENTITY AS [@@IDENTITY];  
+GO  
+
+№5
+BEGIN TRANSACTION - явное начало транзакции
+TRUNCATE TABLE TRUNC - удаляет все строки в таблице, не записывая в журнал транзакций удаление отдельных строк данных.
+ROLLBACK TRAN - завершение транзакции
+SELECT * FROM TRUNC - выводит таблицу TRUNC в том же виде что и до транзакции.
+
+№6
+а) SELECT (SUM(ISNULL(Track, -10))) FROM DANAR; 
+
+б)SELECT ISNULL(Track, -10), ID FROM DANAR 
+ORDER BY Track DESC, ID DESC;
+
+в)SELECT ROUND(AVG(CAST(ISNULL(Track, -10) AS FLOAT)), 2) AS Trac, '47/25' AS OR_ FROM DANAR;
+
+г)INSERT INTO DANAR VALUES (333), (-333)
+SELECT * FROM DANAR;
+
+№2 сложное задние
+
+
+
+
+
+
+
+
